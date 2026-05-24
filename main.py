@@ -394,7 +394,8 @@ async def settings_command(message: Message):
             [
                 InlineKeyboardButton(
                     text="🗑️ Clear All Context",
-                    callback_data="clear_all"
+                    callback_data="clear_all",
+                    sytle="danger"
                 )
             ]
         ]
