@@ -1,4 +1,4 @@
-
+tzdata
 aiogram
 aiohttp
 python-dotenv
