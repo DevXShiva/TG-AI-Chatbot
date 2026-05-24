@@ -3,6 +3,8 @@ import re
 import asyncio
 import aiohttp
 
+from aiohttp import web
+
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -303,6 +305,36 @@ async def ask_ai(messages, detailed=False):
                 return "⚠️ Failed to parse AI response."
 
 # =========================================================
+# WEB SERVER (PORT 8080)
+# =========================================================
+
+async def health(request):
+
+    return web.Response(
+        text="Bot is running successfully 🚀"
+    )
+
+async def start_webserver():
+
+    app = web.Application()
+
+    app.router.add_get("/", health)
+
+    runner = web.AppRunner(app)
+
+    await runner.setup()
+
+    site = web.TCPSite(
+        runner,
+        host="0.0.0.0",
+        port=8080
+    )
+
+    await site.start()
+
+    print("Webserver started on port 8080")
+
+# =========================================================
 # /START
 # =========================================================
 
@@ -394,8 +426,7 @@ async def settings_command(message: Message):
             [
                 InlineKeyboardButton(
                     text="🗑️ Clear All Context",
-                    callback_data="clear_all",
-                    sytle="danger"
+                    callback_data="clear_all"
                 )
             ]
         ]
@@ -853,6 +884,10 @@ async def main():
 
     print(f"Bot Started: @{me.username}")
 
+    # Start webserver
+    await start_webserver()
+
+    # Start bot polling
     await dp.start_polling(bot)
 
 # =========================================================
