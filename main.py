@@ -46,7 +46,7 @@ LOG_CHANNEL = -1002686058050
 
 FORCE_CHANNEL_ID = -1003627956964
 
-FORCE_CHANNEL_LINK = "https://t.me/voidxdev"
+FORCE_CHANNEL_LINK = "https://t.me/+ljvUejOUvlk0YTc1"
 
 IMAGE_URL = "https://i.ibb.co/b505VVfq/LOGO.png"
 
